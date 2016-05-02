@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+def globalConfiguration = rootProject.extensions.getByName("ext")
+
+android {
+    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+
+    defaultConfig {
+        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+        versionCode globalConfiguration.getAt("androidVersionCodeMainLibrary")
+        versionName globalConfiguration.getAt("androidVersionNameMainLibrary")
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    def libraryDependencies = globalConfiguration.mainLibraryDependencies
+    compile libraryDependencies.AndroidAnnotations
+    compile libraryDependencies.AppCompat
+}
+
+publish {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    userOrg = globalConfiguration.getAt("jcenterUserOrganization")
+    groupId = globalConfiguration.getAt("jcenterGroupId")
+    artifactId = globalConfiguration.getAt("jcenterArtifactIdMainLibrary")
+    publishVersion = globalConfiguration.getAt("androidVersionNameMainLibrary")
+    desc = globalConfiguration.getAt("jcenterDescriptionMainLibrary")
+    website = globalConfiguration.getAt("jcenterWebsite")
+    repository = globalConfiguration.getAt("jcenterRepository")
+    bintrayUser = properties.getProperty("bintrayUser")
+    bintrayKey = properties.getProperty("bintrayKey")
+}

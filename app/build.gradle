@@ -1,0 +1,33 @@
+apply plugin: 'com.android.application'
+
+def globalConfiguration = rootProject.extensions.getByName("ext")
+
+android {
+    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+
+    defaultConfig {
+        applicationId "${globalConfiguration.getAt("androidApplicationId")}.hintcaseexample"
+        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+        versionCode globalConfiguration.getAt("androidVersionCodeExample")
+        versionName globalConfiguration.getAt("androidVersionNameExample")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    def dependencies = globalConfiguration.exampleDependencies
+    compile project(':HintCase')
+    compile project(':HintCaseAssets')
+    compile dependencies.AppCompat
+    compile dependencies.DesignLibrary
+    compile dependencies.SupportLibrary
+    compile dependencies.GlideLibrary
+    compile dependencies.ButterKnife
+}
