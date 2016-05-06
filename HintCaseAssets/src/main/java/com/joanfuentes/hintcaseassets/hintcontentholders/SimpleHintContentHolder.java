@@ -47,8 +47,6 @@ public class SimpleHintContentHolder extends HintContentHolder {
         if (contentText != null) {
             linearLayout.addView(getTextViewDescription(context));
         }
-        linearLayout.setAlpha(0);
-
         return linearLayout;
     }
 

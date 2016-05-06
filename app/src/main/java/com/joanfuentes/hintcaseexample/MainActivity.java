@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+import com.joanfuentes.hintcase.ShapeAnimator;
 import com.joanfuentes.hintcaseassets.contentholderanimators.FadeInContentHolderAnimator;
 import com.joanfuentes.hintcaseassets.contentholderanimators.FadeOutContentHolderAnimator;
 import com.joanfuentes.hintcaseassets.contentholderanimators.SlideInFromRightContentHolderAnimator;
@@ -34,6 +35,10 @@ import com.joanfuentes.hintcaseassets.shapes.CircularShape;
 import com.joanfuentes.hintcaseexample.customBlock.CustomHintContentHolder;
 
 public class MainActivity extends AppCompatActivity {
+
+    public Activity getActivity() {
+        return this;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         .setRules(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.ALIGN_PARENT_RIGHT)
                         .setButtonText("OK")
                         .setCloseHintCaseOnClick(true)
-//                        .setButtonStyle(R.style.buttonNice)
+                        .setButtonStyle(R.style.buttonNice)
                         .build();
 //                SimpleHintContentHolder blockInfo = new SimpleHintContentHolder.Builder(view.getContext())
 //                        .setContentTitle("Be happy!")
@@ -81,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 //                        .setImageDrawableId(R.drawable.test_gif)
                         .setMargin(48, 0, 48, 0)
                         .build();
-                new HintCase(view.getRootView())
+                new HintCase(getActivity().getWindow().getDecorView())
                         .setTarget(findViewById(R.id.buttonToShow))
                         .setBackgroundColor(0x00000000)
 //                        .setShapeAnimators(new RectangularShape())
@@ -190,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
 
         (findViewById(R.id.buttontitle)).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 SimpleHintContentHolder blockInfo = new SimpleHintContentHolder.Builder(view.getContext())
                         .setContentTitle("Do you want Pills!")
                         .setContentText("Drugs are your best friends when you can sleep, even if you can't XD")
@@ -198,10 +203,28 @@ public class MainActivity extends AppCompatActivity {
                         .setContentStyle(R.style.content)
                         .build();
                 new HintCase(view.getRootView())
-                        .setTarget(findViewById(R.id.textView), new CircularShape())
+                        .setTarget(findViewById(R.id.textView), new CircularShape(), HintCase.TARGET_IS_NOT_CLICKABLE)
                         .setBackgroundColor(getResources().getColor(R.color.colorPrimary))
-                        .setShapeAnimators(new RevealCircleShapeAnimator(), new UnrevealCircleShapeAnimator())
-                        .setHintBlock(blockInfo, new FadeInContentHolderAnimator())
+                        .setShapeAnimators(new RevealCircleShapeAnimator(), ShapeAnimator.NO_ANIMATOR)
+                        .setHintBlock(blockInfo, new FadeInContentHolderAnimator(), new SlideOutFromRightContentHolderAnimator())
+                        .setOnClosedListener(new HintCase.OnClosedListener() {
+                            @Override
+                            public void onClosed() {
+                                SimpleHintContentHolder blockInfo = new SimpleHintContentHolder.Builder(view.getContext())
+                                        .setContentTitle("More Pills!")
+                                        .setContentText("Yipiyaiyi")
+                                        .setTitleStyle(R.style.title)
+                                        .setContentStyle(R.style.content)
+                                        .build();
+
+                                new HintCase(view.getRootView())
+                                        .setTarget(findViewById(R.id.textView), new CircularShape())
+                                        .setBackgroundColor(getResources().getColor(R.color.colorPrimary))
+                                        .setShapeAnimators(ShapeAnimator.NO_ANIMATOR, new UnrevealCircleShapeAnimator())
+                                        .setHintBlock(blockInfo, new SlideInFromRightContentHolderAnimator())
+                                        .show();
+                            }
+                        })
                         .show();
             }
         });

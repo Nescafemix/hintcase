@@ -10,12 +10,20 @@ import com.joanfuentes.hintcase.Shape;
 
 public class FadeOutShapeAnimator extends ShapeAnimator {
 
+    public FadeOutShapeAnimator() {
+        super();
+    }
+
+    public FadeOutShapeAnimator(int durationInMilliseconds) {
+        super(durationInMilliseconds);
+    }
+
     @Override
     public ValueAnimator getAnimator(View view, Shape shape,
                                      final OnFinishListener onFinishListener) {
         shape.setMinimumValue();
         ObjectAnimator animator = ObjectAnimator.ofFloat(view, View.ALPHA, 1, 0);
-        animator.setDuration(DEFAULT_ANIMATION_DURATION_IN_MILLISECONDS);
+        animator.setDuration(durationInMilliseconds);
         if (onFinishListener != NO_CALLBACK) {
             animator.addListener(new Animator.AnimatorListener() {
                 @Override

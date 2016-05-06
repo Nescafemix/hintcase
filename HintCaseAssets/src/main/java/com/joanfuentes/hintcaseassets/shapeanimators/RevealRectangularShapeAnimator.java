@@ -13,6 +13,15 @@ public class RevealRectangularShapeAnimator extends ShapeAnimator {
 
     public RevealRectangularShapeAnimator() {
         super();
+        init();
+    }
+
+    public RevealRectangularShapeAnimator(int durationInMilliseconds) {
+        super(durationInMilliseconds);
+        init();
+    }
+
+    private void init() {
         floatEvaluator = new FloatEvaluator();
     }
 
@@ -22,7 +31,7 @@ public class RevealRectangularShapeAnimator extends ShapeAnimator {
         final RectangularShape rectangularShape = (RectangularShape) shape;
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(rectangularShape.getMaxHeight(),
                 rectangularShape.getMinHeight());
-        valueAnimator.setDuration(DEFAULT_ANIMATION_DURATION_IN_MILLISECONDS)
+        valueAnimator.setDuration(durationInMilliseconds)
                 .addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -32,6 +41,7 @@ public class RevealRectangularShapeAnimator extends ShapeAnimator {
                                 floatEvaluator.evaluate(fraction, rectangularShape.getMaxWidth(),
                                         rectangularShape.getMinWidth()));
                         if (rectangularShape.getCurrentHeight() == rectangularShape.getMinHeight()) {
+                            rectangularShape.setMinimumValue();
                             if (onFinishListener != null) {
                                 onFinishListener.onFinish();
                             }

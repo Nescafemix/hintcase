@@ -8,13 +8,22 @@ import com.joanfuentes.hintcaseassets.shapes.CircularShape;
 import com.joanfuentes.hintcase.Shape;
 
 public class RevealCircleShapeAnimator extends ShapeAnimator {
+
+    public RevealCircleShapeAnimator() {
+        super();
+    }
+
+    public RevealCircleShapeAnimator(int durationInMilliseconds) {
+        super(durationInMilliseconds);
+    }
+
     @Override
     public ValueAnimator getAnimator(final View view, Shape shape,
                                      final OnFinishListener onFinishListener) {
         final CircularShape circularShape = (CircularShape) shape;
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(circularShape.getMaxRadius(),
                 circularShape.getMinRadius());
-        valueAnimator.setDuration(DEFAULT_ANIMATION_DURATION_IN_MILLISECONDS)
+        valueAnimator.setDuration(durationInMilliseconds)
                 .addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator valueAnimator) {

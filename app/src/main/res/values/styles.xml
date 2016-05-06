@@ -34,6 +34,9 @@
     </style>
 
     <style name="buttonNice" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="android:textSize">24sp</item>
+        <item name="colorButtonNormal">@android:color/holo_blue_dark</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 </resources>

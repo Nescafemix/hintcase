@@ -15,6 +15,8 @@ public class HintCase {
     public static final int HINT_BLOCK_POSITION_RIGHT = 2;
     public static final int HINT_BLOCK_POSITION_BOTTOM = 3;
     public static final int HINT_BLOCK_POSITION_CENTER = 4;
+    public static final boolean TARGET_IS_CLICKABLE = true;
+    public static final boolean TARGET_IS_NOT_CLICKABLE = false;
 
     private HintCaseView hintCaseView;
     private Context context;
@@ -35,7 +37,7 @@ public class HintCase {
     public HintCase(View view) {
         this.context = view.getContext();
         this.hintCaseView = new HintCaseView(context, this);
-        this.hintCaseView.setTargetInfo(null, new RectangularShape());
+        this.hintCaseView.setTargetInfo(null, new RectangularShape(), TARGET_IS_NOT_CLICKABLE);
         this.hintCaseView.setParentView(view);
     }
 
@@ -44,16 +46,30 @@ public class HintCase {
     }
 
     public HintCase setTarget(View target) {
-        return setTarget(target, new RectangularShape());
+        return setTarget(target, new RectangularShape(), TARGET_IS_CLICKABLE);
+    }
+
+    public HintCase setTarget(View target, boolean isTargetClickable) {
+        return setTarget(target, new RectangularShape(), isTargetClickable);
     }
 
     public HintCase setTarget(View target, Shape shape) {
-        this.hintCaseView.setTargetInfo(target, shape);
+        this.hintCaseView.setTargetInfo(target, shape, TARGET_IS_CLICKABLE);
+        return this;
+    }
+
+    public HintCase setTarget(View target, Shape shape, boolean isTargetClickable) {
+        this.hintCaseView.setTargetInfo(target, shape, isTargetClickable);
         return this;
     }
 
     public HintCase setBackgroundColor(int color) {
         this.hintCaseView.setBackgroundColor(color);
+        return this;
+    }
+
+    public HintCase setBackgroundColorByResourceId(int resourceId) {
+        this.hintCaseView.setBackgroundColor(context.getResources().getColor(resourceId));
         return this;
     }
 

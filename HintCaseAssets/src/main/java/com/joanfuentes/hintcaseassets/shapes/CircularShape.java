@@ -2,13 +2,11 @@ package com.joanfuentes.hintcaseassets.shapes;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.joanfuentes.hintcase.Shape;
-import com.joanfuentes.hintcase.utils.DimenUtils;
 
 public class CircularShape extends Shape {
     private static final float DEFAULT_MIN_RADIUS = 50;
@@ -44,7 +42,6 @@ public class CircularShape extends Shape {
         if (targetView != null) {
             minRadius = (Math.max(targetView.getMeasuredWidth(),targetView.getMeasuredHeight()) / 2) + offset;
             maxRadius = Math.max(parent.getHeight(), parent.getWidth());
-
             int[] targetViewLocationInWindow = new int[2];
             targetView.getLocationInWindow(targetViewLocationInWindow);
             setCenterX(targetViewLocationInWindow[0] + targetView.getWidth() / 2);

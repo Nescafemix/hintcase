@@ -6,9 +6,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,6 +23,7 @@ class HintCaseView extends RelativeLayout {
     private static final int  DEFAULT_BACKGROUND_COLOR = 0xCC000000;
     private static final int DEFAULT_HINT_BLOCK_POSITION = HintCase.HINT_BLOCK_POSITION_BOTTOM;
     private static final Shape DEFAULT_SHAPE = new RectangularShape();
+    private static final ContentHolder NO_BLOCK_INFO = null;
     private static final View NO_BLOCK_INFO_VIEW = null;
     private static final View NO_TARGETVIEW = null;
 
@@ -51,6 +50,7 @@ class HintCaseView extends RelativeLayout {
     private List<ContentHolderAnimator> hideExtraContentHolderAnimators;
     private boolean closeOnTouch;
     private HintCase hintCase;
+    private boolean isTargetClickable;
 
     public View getHintBlockView() {
         return hintBlockView;
@@ -66,9 +66,11 @@ class HintCaseView extends RelativeLayout {
                 ViewGroup.LayoutParams.MATCH_PARENT));
         this.hintCase = hintCase;
         closeOnTouch = true;
-        extraBlocks = new ArrayList<>();
         showExtraContentHolderAnimators = new ArrayList<>();
         hideExtraContentHolderAnimators = new ArrayList<>();
+        hintBlock = NO_BLOCK_INFO;
+        hintBlockView = NO_BLOCK_INFO_VIEW;
+        extraBlocks = new ArrayList<>();
         extraBlockViews = new ArrayList<>();
         overDecorView = false;
         backgroundColor = DEFAULT_BACKGROUND_COLOR;
@@ -109,6 +111,7 @@ class HintCaseView extends RelativeLayout {
                     });
             animator.start();
         } else {
+            shape.setMinimumValue();
             performShowBlocks();
         }
     }
@@ -128,7 +131,9 @@ class HintCaseView extends RelativeLayout {
         }
         AnimatorSet animatorSet = new AnimatorSet();
         if (animators.isEmpty()) {
-            getHintBlockView().setAlpha(1);
+            if (existHintBlock()) {
+                getHintBlockView().setAlpha(1);
+            }
             for (View view: extraBlockViews) {
                 view.setAlpha(1);
             }
@@ -141,7 +146,9 @@ class HintCaseView extends RelativeLayout {
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        getHintBlockView().setAlpha(1);
+                        if (existHintBlock()) {
+                            getHintBlockView().setAlpha(1);
+                        }
                     }
 
                     @Override
@@ -178,7 +185,9 @@ class HintCaseView extends RelativeLayout {
         if (hideContentHolderAnimator != ContentHolderAnimator.NO_ANIMATOR) {
             animators.add(hideContentHolderAnimator.getAnimator(hintBlockView));
         } else {
-            getHintBlockView().setAlpha(0);
+            if (existHintBlock()) {
+                getHintBlockView().setAlpha(0);
+            }
         }
         if (!hideExtraContentHolderAnimators.isEmpty()) {
             for (int i = 0; i < extraBlocks.size(); i++) {
@@ -272,6 +281,7 @@ class HintCaseView extends RelativeLayout {
             FrameLayout frameLayout = getHintBlockFrameLayout();
             if (hintBlockView == NO_BLOCK_INFO_VIEW) {
                 hintBlockView = hintBlock.getView(getContext(), hintCase, frameLayout);
+                hintBlockView.setAlpha(0);
             }
             frameLayout.addView(hintBlockView);
             addView(frameLayout);
@@ -291,7 +301,7 @@ class HintCaseView extends RelativeLayout {
     }
 
     private boolean existHintBlock() {
-        return hintBlock != null || hintBlockView != NO_BLOCK_INFO_VIEW;
+        return hintBlock != NO_BLOCK_INFO;
     }
 
     private boolean existExtraBlock() {
@@ -380,9 +390,10 @@ class HintCaseView extends RelativeLayout {
         this.onClosedListener = onClickListener;
     }
 
-    public void setTargetInfo(View view, Shape shape) {
+    public void setTargetInfo(View view, Shape shape, boolean isTargetClickable) {
         this.targetView = view;
         this.shape = shape;
+        this.isTargetClickable = isTargetClickable;
     }
 
     public void setOverDecorView(@NonNull View decorView) {
@@ -446,7 +457,7 @@ class HintCaseView extends RelativeLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        if (hintBlock != null) {
+        if (hintBlock != NO_BLOCK_INFO) {
             hintBlock.onLayout();
         }
         for (ContentHolder extraBlock: extraBlocks) {
@@ -462,7 +473,7 @@ class HintCaseView extends RelativeLayout {
                 performHide();
             }
         }
-        if (targetView != null && shape.isTouchEventInsideTheHint(event)) {
+        if (targetView != null && isTargetClickable && shape.isTouchEventInsideTheHint(event)) {
             targetView.dispatchTouchEvent(event);
         }
         return consumeTouchEvent;

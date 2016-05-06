@@ -8,13 +8,22 @@ import android.view.View;
 import com.joanfuentes.hintcase.ContentHolderAnimator;
 
 public class SlideInFromRightContentHolderAnimator extends ContentHolderAnimator {
+
+    public SlideInFromRightContentHolderAnimator() {
+        super();
+    }
+
+    public SlideInFromRightContentHolderAnimator(int durationInMilliseconds) {
+        super(durationInMilliseconds);
+    }
+
     @Override
     public ValueAnimator getAnimator(final View view, final OnFinishListener onFinishListener) {
         view.setAlpha(1);
         float spaceUntilRightSide = view.getRootView().getWidth() - view.getLeft();
         ObjectAnimator animator = ObjectAnimator.ofFloat(view, View.TRANSLATION_X,
                 spaceUntilRightSide, 0);
-        animator.setDuration(DEFAULT_ANIMATION_DURATION_IN_MILLISECONDS);
+        animator.setDuration(durationInMilliseconds);
         if (onFinishListener != NO_CALLBACK) {
             animator.addListener(new Animator.AnimatorListener() {
                 @Override

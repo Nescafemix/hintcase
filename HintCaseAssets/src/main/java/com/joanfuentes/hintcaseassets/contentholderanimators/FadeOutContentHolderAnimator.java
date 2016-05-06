@@ -8,10 +8,19 @@ import android.view.View;
 import com.joanfuentes.hintcase.ContentHolderAnimator;
 
 public class FadeOutContentHolderAnimator extends ContentHolderAnimator {
+
+    public FadeOutContentHolderAnimator() {
+        super();
+    }
+
+    public FadeOutContentHolderAnimator(int durationInMilliseconds) {
+        super(durationInMilliseconds);
+    }
+
     @Override
     public ValueAnimator getAnimator(View view, final OnFinishListener onFinishListener) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(view, View.ALPHA, 1, 0);
-        animator.setDuration(DEFAULT_ANIMATION_DURATION_IN_MILLISECONDS);
+        animator.setDuration(durationInMilliseconds);
         if (onFinishListener != NO_CALLBACK) {
             animator.addListener(new Animator.AnimatorListener() {
                 @Override
