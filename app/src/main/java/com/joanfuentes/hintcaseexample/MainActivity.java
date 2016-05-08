@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                         .setContentText("you have the full control over your power. On to be a Hero, Off to be a looser.")
                         .setTitleStyle(R.style.title_light)
                         .setContentStyle(R.style.content_light)
-                        .setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP)
+                        .setGravity(Gravity.CENTER)
                         .setMargin(50, 40, 50, 0)
                         .build();
                 new HintCase(view.getRootView())

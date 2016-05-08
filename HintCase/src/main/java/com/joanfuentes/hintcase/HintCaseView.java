@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import android.view.View;
@@ -35,7 +36,6 @@ class HintCaseView extends RelativeLayout {
     private View hintBlockView;
     private ViewGroup parent;
     private int parentIndex;
-    private boolean overDecorView;
     private int backgroundColor;
     private int offset;
     private int hintBlockPosition;
@@ -51,6 +51,8 @@ class HintCaseView extends RelativeLayout {
     private boolean closeOnTouch;
     private HintCase hintCase;
     private boolean isTargetClickable;
+    private Point navigationBarSizeIfExistAtTheBottom;
+    private Point navigationBarSizeIfExistOnTheRight;
 
     public View getHintBlockView() {
         return hintBlockView;
@@ -72,11 +74,12 @@ class HintCaseView extends RelativeLayout {
         hintBlockView = NO_BLOCK_INFO_VIEW;
         extraBlocks = new ArrayList<>();
         extraBlockViews = new ArrayList<>();
-        overDecorView = false;
         backgroundColor = DEFAULT_BACKGROUND_COLOR;
         offset = DimenUtils.dipToPixels(getContext(), HintCase.DEFAULT_SHAPE_OFFSET_IN_DP);
         hintBlockPosition = DEFAULT_HINT_BLOCK_POSITION;
         basePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        navigationBarSizeIfExistAtTheBottom = DimenUtils.getNavigationBarSizeIfExistAtTheBottom(getContext());
+        navigationBarSizeIfExistOnTheRight = DimenUtils.getNavigationBarSizeIfExistOnTheRight(getContext());
     }
 
     private void buildBaseBitmap() {
@@ -313,44 +316,48 @@ class HintCaseView extends RelativeLayout {
         int blockWidth = 0;
         int blockHeight = 0;
         int blockAlign = 0;
-        int blockCenter = 0;
         switch (hintBlockPosition) {
             case HintCase.HINT_BLOCK_POSITION_TOP:
                 blockWidth = parent.getWidth();
-                blockHeight = shape.getTop() - parent.getTop();
+                blockHeight = shape.getTop()
+                        - parent.getTop()
+                        - DimenUtils.getStatusBarHeight(getContext());
                 blockAlign = RelativeLayout.ALIGN_PARENT_TOP;
-                blockCenter = RelativeLayout.CENTER_HORIZONTAL;
                 break;
             case HintCase.HINT_BLOCK_POSITION_BOTTOM:
                 blockWidth = parent.getWidth();
-                blockHeight = parent.getBottom() - shape.getBottom();
+                blockHeight = parent.getBottom()
+                        - navigationBarSizeIfExistAtTheBottom.y
+                        - shape.getBottom();
                 blockAlign = RelativeLayout.ALIGN_PARENT_BOTTOM;
-                blockCenter = RelativeLayout.CENTER_HORIZONTAL;
                 break;
             case HintCase.HINT_BLOCK_POSITION_LEFT:
                 blockWidth = shape.getLeft() - parent.getLeft();
-                blockHeight = parent.getHeight();
+                blockHeight = parent.getHeight() - DimenUtils.getStatusBarHeight(getContext());
                 blockAlign = RelativeLayout.ALIGN_PARENT_LEFT;
-                blockCenter = RelativeLayout.CENTER_VERTICAL;
                 break;
             case HintCase.HINT_BLOCK_POSITION_RIGHT:
-                blockWidth = parent.getRight() - shape.getRight();
-                blockHeight = parent.getHeight();
+                blockWidth = parent.getRight()
+                        - navigationBarSizeIfExistOnTheRight.x
+                        - shape.getRight();
+                blockHeight = parent.getHeight() - DimenUtils.getStatusBarHeight(getContext());
                 blockAlign = RelativeLayout.ALIGN_PARENT_RIGHT;
-                blockCenter = RelativeLayout.CENTER_VERTICAL;
                 break;
             case HintCase.HINT_BLOCK_POSITION_CENTER:
-                blockWidth = parent.getWidth();
-                blockHeight = parent.getHeight();
+                blockWidth = parent.getWidth() - navigationBarSizeIfExistOnTheRight.x;
+                blockHeight = parent.getHeight()
+                        - navigationBarSizeIfExistAtTheBottom.y
+                        - DimenUtils.getStatusBarHeight(getContext());
                 blockAlign = RelativeLayout.ALIGN_PARENT_BOTTOM;
-                blockCenter = RelativeLayout.CENTER_HORIZONTAL;
                 break;
 
         }
         LayoutParams relativeLayoutParams =
                 new LayoutParams(blockWidth, blockHeight);
         relativeLayoutParams.addRule(blockAlign);
-        relativeLayoutParams.addRule(blockCenter);
+        relativeLayoutParams.topMargin = DimenUtils.getStatusBarHeight(getContext());
+        relativeLayoutParams.bottomMargin = navigationBarSizeIfExistAtTheBottom.y;
+        relativeLayoutParams.rightMargin = navigationBarSizeIfExistOnTheRight.x;
         FrameLayout frameLayout = new FrameLayout(getContext());
         frameLayout.setLayoutParams(relativeLayoutParams);
         return frameLayout;
@@ -361,9 +368,9 @@ class HintCaseView extends RelativeLayout {
         LayoutParams relativeLayoutParams =
                 new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         RelativeLayout relativeLayout = new RelativeLayout(getContext());
-        relativeLayoutParams.bottomMargin = DimenUtils.getNavigationBarHeight(getContext());
         relativeLayoutParams.topMargin = DimenUtils.getStatusBarHeight(getContext());
-//        relativeLayoutParams.rightMargin = DimenUtils.getStatusBarWidth(getContext());
+        relativeLayoutParams.bottomMargin = navigationBarSizeIfExistAtTheBottom.y;
+        relativeLayoutParams.rightMargin = navigationBarSizeIfExistOnTheRight.x;
         relativeLayout.setLayoutParams(relativeLayoutParams);
         return relativeLayout;
     }
@@ -399,7 +406,6 @@ class HintCaseView extends RelativeLayout {
     public void setOverDecorView(@NonNull View decorView) {
         parent = ((ViewGroup) decorView);
         parentIndex = -1;
-        overDecorView = true;
     }
 
     public void setParentView(View parentView) {
