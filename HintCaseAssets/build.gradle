@@ -23,7 +23,6 @@ android {
 dependencies {
     def libraryDependencies = globalConfiguration.assetsLibraryDependencies
     compile project(':HintCase')
-    compile libraryDependencies.AndroidAnnotations
     compile libraryDependencies.AppCompat
 }
 

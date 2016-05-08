@@ -23,7 +23,6 @@ android {
 dependencies {
     def libraryDependencies = globalConfiguration.mainLibraryDependencies
     compile libraryDependencies.AndroidAnnotations
-    compile libraryDependencies.AppCompat
 }
 
 publish {
