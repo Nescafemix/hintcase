@@ -197,8 +197,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(final View view) {
                 SimpleHintContentHolder blockInfo = new SimpleHintContentHolder.Builder(view.getContext())
-                        .setContentTitle("Do you want Pills!")
-                        .setContentText("Drugs are your best friends when you can sleep, even if you can't XD")
+                        .setContentTitle("Attention!")
+                        .setContentText("This is your first advice. Please, be careful")
                         .setTitleStyle(R.style.title)
                         .setContentStyle(R.style.content)
                         .build();
@@ -211,8 +211,8 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClosed() {
                                 SimpleHintContentHolder blockInfo = new SimpleHintContentHolder.Builder(view.getContext())
-                                        .setContentTitle("More Pills!")
-                                        .setContentText("Yipiyaiyi")
+                                        .setContentTitle("Attention again!")
+                                        .setContentText("Are you really reading these messages?")
                                         .setTitleStyle(R.style.title)
                                         .setContentStyle(R.style.content)
                                         .build();

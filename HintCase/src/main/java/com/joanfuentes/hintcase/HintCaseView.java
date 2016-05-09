@@ -96,22 +96,12 @@ class HintCaseView extends RelativeLayout {
     private void performShow() {
         parent.addView(this, parentIndex);
         if (showShapeAnimator != ShapeAnimator.NO_ANIMATOR) {
-            ValueAnimator animator = showShapeAnimator.getAnimator(this, shape);
-            animator.addListener(new Animator.AnimatorListener() {
-                        @Override
-                        public void onAnimationStart(Animator animation) { }
-
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            performShowBlocks();
-                        }
-
-                        @Override
-                        public void onAnimationCancel(Animator animation) { }
-
-                        @Override
-                        public void onAnimationRepeat(Animator animation) { }
-                    });
+            ValueAnimator animator = showShapeAnimator.getAnimator(this, shape, new ShapeAnimator.OnFinishListener() {
+                @Override
+                public void onFinish() {
+                    performShowBlocks();
+                }
+            });
             animator.start();
         } else {
             shape.setMinimumValue();
@@ -142,43 +132,30 @@ class HintCaseView extends RelativeLayout {
             }
         } else {
             animatorSet.playTogether(animators);
-            if (showContentHolderAnimator == ContentHolderAnimator.NO_ANIMATOR) {
-                animatorSet.addListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animation) { }
+            animatorSet.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) { }
 
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        if (existHintBlock()) {
-                            getHintBlockView().setAlpha(1);
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (existHintBlock()
+                            && showContentHolderAnimator == ContentHolderAnimator.NO_ANIMATOR) {
+                        getHintBlockView().setAlpha(1);
+                    }
+                    for (int i = 0; i < showExtraContentHolderAnimators.size(); i++) {
+                        ContentHolderAnimator animator = showExtraContentHolderAnimators.get(i);
+                        if (animator == ContentHolderAnimator.NO_ANIMATOR) {
+                            extraBlockViews.get(i).setAlpha(1);
                         }
                     }
+                }
 
-                    @Override
-                    public void onAnimationCancel(Animator animation) { }
+                @Override
+                public void onAnimationCancel(Animator animation) { }
 
-                    @Override
-                    public void onAnimationRepeat(Animator animation) { }
-                });
-            }
-            for (int i = 0; i < showExtraContentHolderAnimators.size(); i++) {
-                final int position = i;
-                animatorSet.addListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animation) { }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        extraBlockViews.get(position).setAlpha(1);
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) { }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animation) { }
-                });
-            }
+                @Override
+                public void onAnimationRepeat(Animator animation) { }
+            });
             animatorSet.start();
         }
     }
