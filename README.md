@@ -287,7 +287,7 @@ The result was this:
 
 ### 4.- Building your own ContentHolder (OPTIONAL)
 
-Building your own content holder is really easy. If you want that you contentHolder was showed on the biggest free space in the screen you shuld extend from HintContentHolder. Otherwise, if you want that your ContentHolder can fill all the parent view extends from ExtraContentHolder.
+Building your own content holder is really easy. If you want that you contentHolder was showed on the biggest free space in the screen you should extend from HintContentHolder. Otherwise, if you want that your ContentHolder can fill all the parent view extends from ExtraContentHolder.
 Both of the base classes (HintContentHolder and ExtraContentHolder) extends from ContentHolder and define its specific getParentLayoutParams to use in your custom ContentHolder.
 
 In your custom ContentHolder you will need to define your own getView method to return the view that you generated for your hint.
@@ -306,30 +306,66 @@ as an optional you can define the onLayout method that you listen when the layou
         ...
     }
 ```
-In the app ecample you can find a CustomHintContentHolder that override and use both methods.
+In the app example you can find a CustomHintContentHolder that override and use both methods.
 
 ### 5.- Building your own ContentHolderAnimator (OPTIONAL)
 
-Building your own content holder animator is really easy. *******
+Building your own content holder animator is really easy. You should extend from ContentHolderAnimator.
+ 
+ In Your custom ContentHolderAnimator wou will need to define your own getAnimator method to return the ValueAnimator of the contentHolder.
+ You receive the view for which is the animator applied and a onFinishListener to call when the animator is finished.
 
 ```java
-
+    @Override
+    public ValueAnimator getAnimator(View view, OnFinishListener onFinishListener) {
+        ...
+    }
 ```
 
 ### 6.- Building your own Shape (OPTIONAL)
 
-Building your own shape is really easy. *******
+A rectangular and a Circular shape are provided with the main library and the assets library, but if you need to do your own shape, you can do it!.
 
+In your Shape you will need to define some methods:
 ```java
+    @Override
+    public void setMinimumValue() {
+        ...
+    }
+    
+    @Override
+    public void setShapeInfo(View targetView, ViewGroup parent, int offset, Context context) {
+        ...
+    }
+    
+    public boolean isTouchEventInsideTheHint(MotionEvent event) {
+        ...
+    }
+    
+    public void draw(Canvas canvas) {
+        ...
+    }
 
 ```
+- setMinimumValue : you should set the minimum size of the shape in this method.
+- setShapeInfo : you should set all the necessary info of the shape for use on ShapeAnimators.
+- isTouchEventInsideTheHint: this method should return if the user performed a touch event inside the Highlighted item.
+- draw: this method should draw the shape in the canvas.
+
+You can check the code of CircularShape & RectangularShape to se some examples.
 
 ### 7.- Building your own ShapeAnimator (OPTIONAL)
 
-Building your own shape animator is really easy. *******
+Building your own shape animator is really easy. You should extend from ShapeAnimator.
+ 
+ In Your custom ShapeAnimator wou will need to define your own getAnimator method to return the ValueAnimator of the contentHolder.
+ You receive the view on which is the animator applied, the shape to animate and a onFinishListener to call when the animator is finished.
 
 ```java
-
+    @Override
+    public ValueAnimator getAnimator(View view, Shape shape, OnFinishListener onFinishListener) {
+        ...
+    }
 ```
 
 ## Developers
