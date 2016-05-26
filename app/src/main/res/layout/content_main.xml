@@ -7,6 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

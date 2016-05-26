@@ -1,6 +1,7 @@
 package com.joanfuentes.hintcaseexample.customBlock;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.text.SpannableString;
@@ -15,11 +16,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.joanfuentes.hintcase.HintCase;
+import com.joanfuentes.hintcase.utils.DimenUtils;
 import com.joanfuentes.hintcaseassets.hintcontentholders.HintContentHolder;
 import com.joanfuentes.hintcaseexample.R;
 
 import java.util.ArrayList;
 
+/**
+ * Created by joanFuentes on 26/05/16
+ *
+ * Example of a custom HintContentHolder which includes an arrow and the necessary methods
+ * for positioning the arrow based on the position of the hint.
+ */
 public class CustomHintContentHolder extends HintContentHolder {
     public static final int NO_IMAGE = -1;
     public static final int  BACKGROUND_COLOR_TRANSPARENT = 0x00000000;
@@ -63,6 +71,7 @@ public class CustomHintContentHolder extends HintContentHolder {
         this.parent = parent;
 
         calculateDataToPutTheArroW(hintCase);
+        setArrow(context);
 
         FrameLayout.LayoutParams frameLayoutParamsBlock = getParentLayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -70,21 +79,7 @@ public class CustomHintContentHolder extends HintContentHolder {
                 gravity, marginLeft, marginTop, marginRight, marginBottom);
 
         RelativeLayout fullBlockLayout = new RelativeLayout(context);
-        RelativeLayout.LayoutParams relativeLayoutParamsArrow =
-                new RelativeLayout.LayoutParams(arrowWidth, arrowHeight);
         fullBlockLayout.setLayoutParams(frameLayoutParamsBlock);
-        for (int rule : alignArrowRules) {
-            relativeLayoutParamsArrow.addRule(rule);
-        }
-        arrow = new TriangleShapeView(context);
-        arrow.setBackgroundColor(backgroundColor);
-        if (useBorder) {
-            arrow.setBorder(borderSize, borderColor);
-        }
-        arrow.setDirection(arrowDirection);
-        arrow.setShadowSize(shadowSize);
-        arrow.setLayoutParams(relativeLayoutParamsArrow);
-
 
         RelativeLayout.LayoutParams relativeLayoutParamsLinear =
                 new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -98,8 +93,6 @@ public class CustomHintContentHolder extends HintContentHolder {
         relativeLayoutParamsLinear.leftMargin = contentLeftMargin;
         contentLinearLayout = new LinearLayout(context);
         contentLinearLayout.setBackgroundResource(R.drawable.bubble_border_background);
-//        contentLinearLayout.setBackgroundDrawable(getLayerDrawable());
-//        GradientDrawable gradientDrawable = (GradientDrawable) contentLinearLayout.getBackground().getCurrent();
         LayerDrawable layerDrawable = (LayerDrawable) contentLinearLayout.getBackground().getCurrent();
         GradientDrawable gradientDrawable = (GradientDrawable) layerDrawable.getDrawable(layerDrawable.getNumberOfLayers() - 1);
         gradientDrawable.setColor(backgroundColor);
@@ -122,38 +115,10 @@ public class CustomHintContentHolder extends HintContentHolder {
         if (contentText != null) {
             contentLinearLayout.addView(getTextViewDescription(context));
         }
-        fullBlockLayout.setAlpha(0);
         fullBlockLayout.addView(contentLinearLayout);
         fullBlockLayout.addView(arrow);
         return fullBlockLayout;
     }
-
-    /*
-    private LayerDrawable getLayerDrawable(){
-        Drawable layer1 = getShadowDrawable();
-        Drawable layerX = getBorderAndContentDrawable();
-
-        return new LayerDrawable(new Drawable[]{layer1, layerX});
-    }
-
-    private Drawable getShadowDrawable() {
-        GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, null);
-        gradientDrawable.setCornerRadius(context.getResources().getDimensionPixelSize(R.dimen.shadow));
-        gradientDrawable.setColor(Color.parseColor("#05000000"));
-        return gradientDrawable;
-    }
-
-    private Drawable getBorderAndContentDrawable() {
-        GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, null);
-        gradientDrawable.setShapeAnimators(GradientDrawable.RECTANGLE);
-        gradientDrawable.setCornerRadius(context.getResources().getDimensionPixelSize(R.dimen.corner_radius));
-        gradientDrawable.setColor(backgroundColor);
-        if (useBorder) {
-            gradientDrawable.setStroke(borderSize, borderColor);
-        }
-        return gradientDrawable;
-    }
-*/
 
     @Override
     public void onLayout() {
@@ -165,9 +130,24 @@ public class CustomHintContentHolder extends HintContentHolder {
             if (arrow.getTop() >= contentLinearLayout.getBottom()) {
                 float translationY = arrow.getY() + (arrow.getHeight()/2) - contentLinearLayout.getY() - (contentLinearLayout.getHeight()/2);
                 contentLinearLayout.setTranslationY(translationY);
-
             }
         }
+    }
+
+    private void setArrow(Context context) {
+        RelativeLayout.LayoutParams relativeLayoutParamsArrow =
+                new RelativeLayout.LayoutParams(arrowWidth, arrowHeight);
+        for (int rule : alignArrowRules) {
+            relativeLayoutParamsArrow.addRule(rule);
+        }
+        arrow = new TriangleShapeView(context);
+        arrow.setBackgroundColor(backgroundColor);
+        if (useBorder) {
+            arrow.setBorder(borderSize, borderColor);
+        }
+        arrow.setDirection(arrowDirection);
+        arrow.setShadowSize(shadowSize);
+        arrow.setLayoutParams(relativeLayoutParamsArrow);
     }
 
     private void calculateArrowTranslation() {
@@ -183,11 +163,15 @@ public class CustomHintContentHolder extends HintContentHolder {
                 break;
             case HintCase.HINT_BLOCK_POSITION_RIGHT:
                 xTranslationImage = 0;
-                yTranslationImage = hintCase.getShape().getCenterY() - parent.getHeight()/2;
+                yTranslationImage = hintCase.getShape().getCenterY()
+                        - parent.getHeight()/2
+                        - DimenUtils.getStatusBarHeight(hintCase.getView().getContext());
                 break;
             case HintCase.HINT_BLOCK_POSITION_LEFT:
                 xTranslationImage = 0;
-                yTranslationImage = hintCase.getShape().getCenterY() - (parent.getHeight()/2);
+                yTranslationImage = hintCase.getShape().getCenterY()
+                        - (parent.getHeight()/2)
+                        - DimenUtils.getStatusBarHeight(hintCase.getView().getContext());
                 break;
             default:
                 xTranslationImage = 0;

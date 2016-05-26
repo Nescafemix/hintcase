@@ -5,7 +5,7 @@ HintCase
 
 HintCase is a library for Android that will help you create really awesome hints/tips for your apps. You can find a secondary library (HintCaseAssets) with multiple content holders and animators that you can use with HintCase library. Take a look to how you would integrate HintCase into your app.
 
-With HintCase library you can apply shape animations to highlight a specific view and show a HintBlock and/or multiple ExtraBlocks all of them with optional animations to show/hide them. All is very easy, but if you don't have time to implement shapes, blocks and/ animations, with the HintCaseAssets library you can use some predefined items.
+With HintCase library you can apply shape animations to highlight a specific view and show a HintBlock and/or multiple ExtraBlocks all of them with optional animations to show/hide them. All is very easy, but if you don't have time to implement shapes, blocks and animations, with the HintCaseAssets library you can use some predefined items.
 
 ## Latest Version
 

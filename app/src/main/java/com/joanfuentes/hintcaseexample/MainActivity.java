@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
                         .setTitleStyle(R.style.title)
                         .setContentStyle(R.style.content)
 //                        .setImageDrawableId(R.drawable.test_gif)
-                        .setMargin(48, 0, 48, 0)
                         .build();
                 new HintCase(getActivity().getWindow().getDecorView())
                         .setTarget(findViewById(R.id.buttonToShow))
