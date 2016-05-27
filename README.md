@@ -1,9 +1,7 @@
 HintCase
 ==================
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=GT3D-kJrKAA
-" target="_blank"><img src="http://img.youtube.com/vi/GT3D-kJrKAA/0.jpg" 
-alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+<[![HintCase demo](http://img.youtube.com/vi/GT3D-kJrKAA/0.jpg)](http://www.youtube.com/watch?v=GT3D-kJrKAA)
 
 ![](assets/bubble_demo.gif)
 
