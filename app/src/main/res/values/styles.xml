@@ -25,6 +25,11 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="content.dark" parent="Base.TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:paddingBottom">200dp</item>
+    </style>
+
     <style name="title.light" parent="Base.TextAppearance.AppCompat.Title">
         <item name="android:textColor">@android:color/white</item>
     </style>

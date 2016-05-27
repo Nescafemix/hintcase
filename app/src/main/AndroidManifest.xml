@@ -15,6 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FullHintActivity" />
+        <activity android:name=".TargetHintActivity" />
+        <activity android:name=".CustomHintActivity" />
     </application>
 
 </manifest>

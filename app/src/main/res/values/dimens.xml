@@ -9,4 +9,5 @@
     <dimen name="arrow_height">20dp</dimen>
     <dimen name="shadow">7dp</dimen>
     <dimen name="corner_radius">10dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
 </resources>

@@ -1,7 +1,6 @@
 package com.joanfuentes.hintcaseexample.customBlock;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.text.SpannableString;
@@ -52,6 +51,10 @@ public class CustomHintContentHolder extends HintContentHolder {
     private int contentBottomMargin;
     private int contentRightMargin;
     private int contentLeftMargin;
+    private int contentTopPadding;
+    private int contentBottomPadding;
+    private int contentRightPadding;
+    private int contentLeftPadding;
     private int gravity;
     private float xTranslationImage;
     private float yTranslationImage;
@@ -103,7 +106,10 @@ public class CustomHintContentHolder extends HintContentHolder {
         contentLinearLayout.setLayoutParams(relativeLayoutParamsLinear);
         contentLinearLayout.setGravity(Gravity.CENTER);
         int padding = borderSize + shadowSize;
-        contentLinearLayout.setPadding(padding, padding, padding, padding);
+        contentLinearLayout.setPadding(padding + contentLeftPadding,
+                padding + contentTopPadding,
+                padding + contentRightPadding,
+                padding + contentBottomPadding);
         contentLinearLayout.setOrientation(LinearLayout.VERTICAL);
 
         if (contentTitle != null) {
@@ -127,7 +133,7 @@ public class CustomHintContentHolder extends HintContentHolder {
         arrow.setTranslationY(yTranslationImage);
         if (hintCase.getBlockInfoPosition() == HintCase.HINT_BLOCK_POSITION_RIGHT
                 || hintCase.getBlockInfoPosition() == HintCase.HINT_BLOCK_POSITION_LEFT) {
-            if (arrow.getTop() >= contentLinearLayout.getBottom()) {
+            if (arrow.getBottom() >= contentLinearLayout.getBottom()) {
                 float translationY = arrow.getY() + (arrow.getHeight()/2) - contentLinearLayout.getY() - (contentLinearLayout.getHeight()/2);
                 contentLinearLayout.setTranslationY(translationY);
             }
@@ -374,6 +380,30 @@ public class CustomHintContentHolder extends HintContentHolder {
             blockInfo.marginTop = top;
             blockInfo.marginRight = right;
             blockInfo.marginBottom = bottom;
+            return this;
+        }
+
+        public Builder setMargingByResourcesId(int left, int top, int right, int bottom) {
+            blockInfo.marginLeft = context.getResources().getDimensionPixelSize(left);
+            blockInfo.marginTop = context.getResources().getDimensionPixelSize(top);
+            blockInfo.marginRight = context.getResources().getDimensionPixelSize(right);
+            blockInfo.marginBottom = context.getResources().getDimensionPixelSize(bottom);
+            return this;
+        }
+
+        public Builder setContentPadding(int left, int top, int right, int bottom) {
+            blockInfo.contentLeftPadding = left;
+            blockInfo.contentTopPadding = top;
+            blockInfo.contentRightPadding = right;
+            blockInfo.contentBottomPadding = bottom;
+            return this;
+        }
+
+        public Builder setContentPaddingByResourcesId(int left, int top, int right, int bottom) {
+            blockInfo.contentLeftPadding = context.getResources().getDimensionPixelSize(left);
+            blockInfo.contentTopPadding = context.getResources().getDimensionPixelSize(top);
+            blockInfo.contentRightPadding = context.getResources().getDimensionPixelSize(right);
+            blockInfo.contentBottomPadding = context.getResources().getDimensionPixelSize(bottom);
             return this;
         }
 

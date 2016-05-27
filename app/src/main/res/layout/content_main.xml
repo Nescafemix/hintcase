@@ -1,134 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_gravity="center">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/button_full_screen_hints"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin">
+        android:text="Full screen hints"
+        android:layout_centerHorizontal="true"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hint button"
-            android:id="@+id/buttonbutton"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/centered_down_button"
-            android:layout_toEndOf="@+id/centered_down_button" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hint radio"
-            android:id="@+id/buttonradio"
-            android:layout_below="@+id/buttonbutton"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+    <Button
+        android:id="@+id/button_target_hints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Target hints"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@id/button_full_screen_hints"
+        android:layout_centerHorizontal="true"/>
 
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="hint switch"
-            android:id="@+id/buttonswitch"
-            android:layout_below="@+id/buttonradio"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+    <Button
+        android:id="@+id/button_custom_hints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Custom hints"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@id/button_target_hints"
+        android:layout_centerHorizontal="true"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="hint fab"
-            android:id="@+id/buttonfab"
-            android:layout_below="@+id/buttonswitch"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="button"
-            android:id="@+id/buttonToShow"
-            android:layout_alignParentTop="true"
-            android:layout_alignRight="@+id/buttonswitch"
-            android:layout_alignEnd="@+id/buttonswitch" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New RadioButton"
-            android:id="@+id/radioButton"
-            android:checked="false"
-            android:layout_above="@+id/buttonswitch"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Power"
-            android:id="@+id/switch1"
-            android:checked="true"
-            android:layout_alignBottom="@+id/buttonswitch"
-            android:layout_alignRight="@+id/buttonbutton"
-            android:layout_alignEnd="@+id/buttonbutton" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="hint icon toolbar"
-            android:id="@+id/buttonicontoolbar"
-            android:layout_below="@+id/buttonfab"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="hint textview"
-            android:id="@+id/buttontitle"
-            android:layout_centerVertical="true"
-            android:layout_below="@+id/buttonicontoolbar"
-            android:layout_alignLeft="@+id/buttonswitch"
-            android:layout_alignStart="@+id/buttonswitch" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="hint icon app toolbar"
-            android:id="@+id/buttoniconapp"
-            android:layout_below="@+id/buttontitle" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="WE ARE THE BEST OR NOT"
-            android:id="@+id/textView"
-            android:gravity="center_horizontal"
-            android:layout_alignBottom="@+id/buttoniconapp"
-            android:layout_alignLeft="@+id/switch1"
-            android:layout_alignStart="@+id/switch1" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/centered_down_button"
-            android:layout_below="@+id/textView"
-            android:layout_toRightOf="@+id/buttonswitch"
-            android:layout_toEndOf="@+id/buttonswitch" />
-
-    </RelativeLayout>
-</ScrollView>
+</RelativeLayout>
 
