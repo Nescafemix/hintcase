@@ -1,9 +1,7 @@
 HintCase
 ==================
 
-<[![HintCase demo](http://img.youtube.com/vi/GT3D-kJrKAA/0.jpg)](http://www.youtube.com/watch?v=GT3D-kJrKAA)
-
-![](assets/bubble_demo.gif)
+[![HintCase demo](http://img.youtube.com/vi/GT3D-kJrKAA/0.jpg)](http://www.youtube.com/watch?v=GT3D-kJrKAA)[![Bubble demo](http://img.youtube.com/vi/1O-SRAZqYAo/0.jpg)](http://www.youtube.com/watch?v=1O-SRAZqYAo)
 
 HintCase is a library for Android that will help you create really awesome hints/tips for your apps. You can find a secondary library (HintCaseAssets) with multiple content holders and animators that you can use with HintCase library. Take a look to how you would integrate HintCase into your app.
 
@@ -77,17 +75,17 @@ You can use a ShapeAnimator to show and another ShapeAnimator to hide. You can f
 ##### FadeInShapeAnimator and FadeOutShapeAnimator
 
 Fade in/out effects. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/fade_in_out_animator.gif)
+[![Fade in/out animator demo](http://img.youtube.com/vi/67MZVrnhaAI/0.jpg)](http://www.youtube.com/watch?v=67MZVrnhaAI)
 
 ##### RevealCircleShapeAnimator and UnrevealCircleShapeAnimator
 
 Reveal/Unreveal effects to highlight a target with a circle shape. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/reveal_unreveal_circle_animator.gif)
+[![Reveal/unreveal circular animator demo](http://img.youtube.com/vi/-U4Ish1NKSM/0.jpg)](http://www.youtube.com/watch?v=-U4Ish1NKSM)
 
 ##### RevealRectangularShapeAnimator and UnrevealRectangularShapeAnimator
 
 Reveal/Unreveal effects to highlight a target with a rectangular shape. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/reveal_unreveal_rectangular_animator.gif)
+[![Reveal/unreveal rectangular animator demo](http://img.youtube.com/vi/-6Nd-1CaLyQI/0.jpg)](http://www.youtube.com/watch?v=-6Nd-1CaLyQI)
 
 Finally to configure shapeAnimators you need to call:
 
@@ -167,12 +165,12 @@ If you don't want to create your own ContentHolderAnimators, you can use some ex
 ##### FadeInContentHolderAnimator and FadeOutContentHolderAnimator
 
 Fade in/out effects. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/fade_in_out_contentholder_animator.gif)
+[![Fade in/out content holder animator demo](http://img.youtube.com/vi/MGxyC1XZpXs/0.jpg)](http://www.youtube.com/watch?v=MGxyC1XZpXs)
 
 ##### SlideInFromRightContentHolderAnimator and SlideOutFromRightContentHolderAnimator
 
 Slide in/out movements from right position. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/slide_in_out_contentholder_animator.gif)
+[![Slide in/out content holder animator demo](http://img.youtube.com/vi/8ewF5wEz988/0.jpg)](http://www.youtube.com/watch?v=8ewF5wEz988)
 
 #### 2.6.- Configure an Extra Block (OPTIONAL)
 
@@ -202,7 +200,6 @@ Finally, you can configure ContentHolderAnimators to show or hide the extra bloc
 ```java
     .setExtraBlock(okBlock, new SlideInFromRightContentHolderAnimator(), new SlideOutFromRightContentHolderAnimator())
 ```
-![](assets/simple_button_extrablock_animator.gif)
 
 If you don't want to create your own ContentHolderAnimators, you can use some existing in HintCaseAssets library.
 
@@ -259,8 +256,7 @@ For example:
 In this example, the fist hint is configured to show a reveal animation for the shape but with no animation to hide the hint. The next hint doesn't show an animation to show so, the effect is that the shape was fixed and there was no change with it.
 The hint block was showed with a fade in animation but to hide it was shown an slideOut animation, and the hint block in the next screen was showed with a slideIn animation.
 The result was this:
-![](assets/consecutive_hints.gif)
-
+[![Slide in/out content holder animator demo](http://img.youtube.com/vi/uyE6bNGVwGc/0.jpg)](http://www.youtube.com/watch?v=uyE6bNGVwGc)
 
 ### 4.- Building your own ContentHolder (OPTIONAL)
 
