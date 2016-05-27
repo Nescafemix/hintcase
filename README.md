@@ -88,7 +88,7 @@ Reveal/Unreveal effects to highlight a target with a circle shape. You can set t
 
 Reveal/Unreveal effects to highlight a target with a rectangular shape. You can set the time in the constructor. If no time is specified, 300ms are the default value.
 
-[![Reveal/unreveal rectangular animator demo](http://img.youtube.com/vi/-6Nd-1CaLyQI/0.jpg)](http://www.youtube.com/watch?v=-6Nd-1CaLyQI)
+[![Reveal/unreveal rectangular animator demo](http://img.youtube.com/vi/6Nd-1CaLyQI/0.jpg)](http://www.youtube.com/watch?v=6Nd-1CaLyQI)
 
 Finally to configure shapeAnimators you need to call:
 
