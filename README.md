@@ -1,7 +1,11 @@
 HintCase
 ==================
 
-![](assets/welcome_demo.gif)  ![](assets/bubble_demo.gif)
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=GT3D-kJrKAA
+" target="_blank"><img src="http://img.youtube.com/vi/GT3D-kJrKAA/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+
+![](assets/bubble_demo.gif)
 
 HintCase is a library for Android that will help you create really awesome hints/tips for your apps. You can find a secondary library (HintCaseAssets) with multiple content holders and animators that you can use with HintCase library. Take a look to how you would integrate HintCase into your app.
 
@@ -72,35 +76,20 @@ In HintCaseAssets you can find an extra shape (CircularShape), which is ideal to
 You can show animations when you show/hide a target with a shape. To do it, call the method **setShapeAnimators(..)**. 
 You can use a ShapeAnimator to show and another ShapeAnimator to hide. You can find some ShapeAnimators in HintCaseAssets library. Feel free to use them or create your own awesome animators.
 
-##### FadeInShapeAnimator
+##### FadeInShapeAnimator and FadeOutShapeAnimator
 
-Fade in effect. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/fadein_animator.gif)
+Fade in/out effects. You can set the time in the constructor. If no time is specified, 300ms are the default value.
+![](assets/fade_in_out_animator.gif)
 
-##### FadeOutShapeAnimator
+##### RevealCircleShapeAnimator and UnrevealCircleShapeAnimator
 
-Fade out effect. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/fadeout_animator.gif)
+Reveal/Unreveal effects to highlight a target with a circle shape. You can set the time in the constructor. If no time is specified, 300ms are the default value.
+![](assets/reveal_unreveal_circle_animator.gif)
 
-##### RevealCircleShapeAnimator
+##### RevealRectangularShapeAnimator and UnrevealRectangularShapeAnimator
 
-Reveal effect to highlight a target with a circle shape. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/revealcircle_animator.gif)
-
-##### RevealCircleShapeAnimator
-
-Unreveal effect to highlight a target with a circle shape. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/unrevealcircle_animator.gif)
-
-##### RevealRectangularShapeAnimator
-
-Reveal effect to highlight a target with a rectangular shape. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/revealrectangular_animator.gif)
-
-##### RevealRectangularShapeAnimator
-
-Unreveal effect to highlight a target with a rectangular shape. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/unrevealrectangular_animator.gif)
+Reveal/Unreveal effects to highlight a target with a rectangular shape. You can set the time in the constructor. If no time is specified, 300ms are the default value.
+![](assets/reveal_unreveal_rectangular_animator.gif)
 
 Finally to configure shapeAnimators you need to call:
 
@@ -177,25 +166,15 @@ Finally, you can configure ContentHolderAnimators to show or hide the hint block
 
 If you don't want to create your own ContentHolderAnimators, you can use some existing in HintCaseAssets library as:
 
-##### FadeInContentHolderAnimator
+##### FadeInContentHolderAnimator and FadeOutContentHolderAnimator
 
-Fade in effect. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/fadein_contentholder_animator.gif)
+Fade in/out effects. You can set the time in the constructor. If no time is specified, 300ms are the default value.
+![](assets/fade_in_out_contentholder_animator.gif)
 
-##### FadeOutContentHolderAnimator
+##### SlideInFromRightContentHolderAnimator and SlideOutFromRightContentHolderAnimator
 
-Fade out effect. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/fadeout_contentholder_animator.gif)
-
-##### SlideInFromRightContentHolderAnimator
-
-Slide in movement from right position. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/slidein_contentholder_animator.gif)
-
-##### SlideOutFromRightContentHolderAnimator
-
-Slide out movement towards right position. You can set the time in the constructor. If no time is specified, 300ms are the default value.
-![](assets/slideout_contentholder_animator.gif)
+Slide in/out movements from right position. You can set the time in the constructor. If no time is specified, 300ms are the default value.
+![](assets/slide_in_out_contentholder_animator.gif)
 
 #### 2.6.- Configure an Extra Block (OPTIONAL)
 
@@ -279,7 +258,7 @@ For example:
             .show();
 ```
 
-In this example, the fist hint is configured to show a reveal animation for the shape but with no animation to hide the hint. The next hint doesn't show an animation to show so, teh effect is that the shape was fixed and there was no change with it.
+In this example, the fist hint is configured to show a reveal animation for the shape but with no animation to hide the hint. The next hint doesn't show an animation to show so, the effect is that the shape was fixed and there was no change with it.
 The hint block was showed with a fade in animation but to hide it was shown an slideOut animation, and the hint block in the next screen was showed with a slideIn animation.
 The result was this:
 ![](assets/consecutive_hints.gif)
