@@ -8,6 +8,7 @@ public abstract class ShapeAnimator {
     public static final ShapeAnimator NO_ANIMATOR = null;
     public static final OnFinishListener NO_CALLBACK = null;
     protected int durationInMilliseconds;
+    protected long startDelayInMilliseconds;
 
     public ShapeAnimator() {
         durationInMilliseconds = DEFAULT_ANIMATION_DURATION_IN_MILLISECONDS;
@@ -25,5 +26,10 @@ public abstract class ShapeAnimator {
 
     public interface OnFinishListener {
         void onFinish();
+    }
+
+    public ShapeAnimator setStartDelay(long startDelayInMilliseconds) {
+        this.startDelayInMilliseconds = startDelayInMilliseconds;
+        return this;
     }
 }

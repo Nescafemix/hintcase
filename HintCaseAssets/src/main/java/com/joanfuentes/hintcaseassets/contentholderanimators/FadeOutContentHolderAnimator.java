@@ -21,6 +21,7 @@ public class FadeOutContentHolderAnimator extends ContentHolderAnimator {
     public ValueAnimator getAnimator(View view, final OnFinishListener onFinishListener) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(view, View.ALPHA, 1, 0);
         animator.setDuration(durationInMilliseconds);
+        animator.setStartDelay(startDelayInMilliseconds);
         if (onFinishListener != NO_CALLBACK) {
             animator.addListener(new Animator.AnimatorListener() {
                 @Override
