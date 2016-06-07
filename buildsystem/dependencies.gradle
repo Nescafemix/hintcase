@@ -43,7 +43,7 @@ ext {
     androidVersionNameAssetsLibrary = "1.0.0"
 
     //Libraries Versions
-    androidSupportVersion = "23.3.0"
+    androidSupportVersion = "23.4.0"
     butterKnifeVersion = "7.0.1"
     glideVersion = "3.6.1"
 
