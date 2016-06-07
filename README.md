@@ -21,7 +21,7 @@ Add the library dependency to your build.gradle file.
 ```groovy
 dependencies {
     ...
-    compile 'com.joanfuentes:HintCase:1.0.0'
+    compile 'com.joanfuentes:HintCase:1.0.1'
 }
 ```
 
@@ -32,7 +32,7 @@ You can add the optional assets library dependency to your build.gradle file.
 ```groovy
 dependencies {
     ...
-    compile 'com.joanfuentes:HintCaseAssets:1.0.0'
+    compile 'com.joanfuentes:HintCaseAssets:1.0.1'
 }
 ```
 
@@ -75,18 +75,21 @@ You can use a ShapeAnimator to show and another ShapeAnimator to hide. You can f
 ##### FadeInShapeAnimator and FadeOutShapeAnimator
 
 Fade in/out effects. You can set the time in the constructor. If no time is specified, 300ms are the default value.
+You can configure a delay for the animation with setStartDelay(long startDelayTimeInMillis).
 
 [![Fade in/out animator demo](assets/fade_in_out_animator.gif)](http://www.youtube.com/watch?v=67MZVrnhaAI)
 
 ##### RevealCircleShapeAnimator and UnrevealCircleShapeAnimator
 
 Reveal/Unreveal effects to highlight a target with a circle shape. You can set the time in the constructor. If no time is specified, 300ms are the default value.
+You can configure a delay for the animation with setStartDelay(long startDelayTimeInMillis).
 
 [![Reveal/unreveal circular animator demo](assets/reveal_unreveal_circle_animator.gif)](http://www.youtube.com/watch?v=-U4Ish1NKSM)
 
 ##### RevealRectangularShapeAnimator and UnrevealRectangularShapeAnimator
 
 Reveal/Unreveal effects to highlight a target with a rectangular shape. You can set the time in the constructor. If no time is specified, 300ms are the default value.
+You can configure a delay for the animation with setStartDelay(long startDelayTimeInMillis).
 
 [![Reveal/unreveal rectangular animator demo](assets/reveal_unreveal_rectangular_animator.gif)](http://www.youtube.com/watch?v=6Nd-1CaLyQI)
 
@@ -168,12 +171,14 @@ If you don't want to create your own ContentHolderAnimators, you can use some ex
 ##### FadeInContentHolderAnimator and FadeOutContentHolderAnimator
 
 Fade in/out effects. You can set the time in the constructor. If no time is specified, 300ms are the default value.
+You can configure a delay for the animation with setStartDelay(long startDelayTimeInMillis).
 
 [![Fade in/out content holder animator demo](assets/fade_in_out_contentholder_animator.gif)](http://www.youtube.com/watch?v=MGxyC1XZpXs)
 
 ##### SlideInFromRightContentHolderAnimator and SlideOutFromRightContentHolderAnimator
 
 Slide in/out movements from right position. You can set the time in the constructor. If no time is specified, 300ms are the default value.
+You can configure a delay for the animation with setStartDelay(long startDelayTimeInMillis).
 
 [![Slide in/out content holder animator demo](assets/slide_in_out_contentholder_animator.gif)](http://www.youtube.com/watch?v=8ewF5wEz988)
 
@@ -291,7 +296,7 @@ In the app example you can find a CustomHintContentHolder that override and use 
 
 Building your own content holder animator is really easy. You should extend from ContentHolderAnimator.
  
- In Your custom ContentHolderAnimator wou will need to define your own getAnimator method to return the ValueAnimator of the contentHolder.
+ In Your custom ContentHolderAnimator you will need to define your own getAnimator method to return the ValueAnimator of the contentHolder.
  You receive the view for which is the animator applied and a onFinishListener to call when the animator is finished.
 
 ```java
