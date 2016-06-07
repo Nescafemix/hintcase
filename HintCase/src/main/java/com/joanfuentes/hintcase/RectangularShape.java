@@ -36,8 +36,8 @@ public class RectangularShape extends Shape {
         if (targetView != null) {
             minHeight = targetView.getMeasuredHeight() + offset;
             minWidth = targetView.getMeasuredWidth() + offset;
-            maxHeight = parent.getHeight();
-            maxWidth = parent.getWidth();
+            maxHeight = parent.getHeight() * 2;
+            maxWidth = parent.getWidth() * 2;
             int[] targetViewLocationInWindow = new int[2];
             targetView.getLocationInWindow(targetViewLocationInWindow);
             setCenterX(targetViewLocationInWindow[0] + targetView.getWidth() / 2);

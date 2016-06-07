@@ -8,6 +8,7 @@ public abstract class ContentHolderAnimator {
     public static final ContentHolderAnimator NO_ANIMATOR = null;
     public static final OnFinishListener NO_CALLBACK = null;
     protected int durationInMilliseconds;
+    protected long startDelayInMilliseconds;
 
     public ContentHolderAnimator() {
         durationInMilliseconds = DEFAULT_ANIMATION_DURATION_IN_MILLISECONDS;
@@ -25,5 +26,10 @@ public abstract class ContentHolderAnimator {
 
     public interface OnFinishListener {
         void onFinish();
+    }
+
+    public ContentHolderAnimator setStartDelay(long startDelayInMilliseconds) {
+        this.startDelayInMilliseconds = startDelayInMilliseconds;
+        return this;
     }
 }

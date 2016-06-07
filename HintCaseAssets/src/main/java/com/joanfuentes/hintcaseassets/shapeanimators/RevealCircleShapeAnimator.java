@@ -23,6 +23,7 @@ public class RevealCircleShapeAnimator extends ShapeAnimator {
         final CircularShape circularShape = (CircularShape) shape;
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(circularShape.getMaxRadius(),
                 circularShape.getMinRadius());
+        valueAnimator.setStartDelay(startDelayInMilliseconds);
         valueAnimator.setDuration(durationInMilliseconds)
                 .addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override

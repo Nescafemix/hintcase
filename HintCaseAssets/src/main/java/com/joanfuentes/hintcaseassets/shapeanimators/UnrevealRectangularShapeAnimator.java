@@ -31,6 +31,7 @@ public class UnrevealRectangularShapeAnimator extends ShapeAnimator {
         final RectangularShape rectangularShape = (RectangularShape) shape;
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(rectangularShape.getMinHeight(),
                 rectangularShape.getMaxHeight());
+        valueAnimator.setStartDelay(startDelayInMilliseconds);
         valueAnimator.setDuration(durationInMilliseconds)
                 .addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override

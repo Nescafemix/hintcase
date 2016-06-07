@@ -24,6 +24,7 @@ public class FadeInShapeAnimator extends ShapeAnimator {
         shape.setMinimumValue();
         ObjectAnimator animator = ObjectAnimator.ofFloat(view, View.ALPHA, 0, 1);
         animator.setDuration(durationInMilliseconds);
+        animator.setStartDelay(startDelayInMilliseconds);
         if (onFinishListener != NO_CALLBACK) {
             animator.addListener(new Animator.AnimatorListener() {
                 @Override

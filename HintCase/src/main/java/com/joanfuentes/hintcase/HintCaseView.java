@@ -269,7 +269,7 @@ class HintCaseView extends RelativeLayout {
         if (existExtraBlock()) {
             RelativeLayout relativeLayout = getExtraContentHolderRelativeLayout();
             for (int i = 0; i < extraBlocks.size(); i++) {
-                View view = extraBlocks.get(i).getView(getContext(), hintCase, this);
+                View view = extraBlocks.get(i).getView(getContext(), hintCase, relativeLayout);
                 if (showExtraContentHolderAnimators.get(i) != ContentHolderAnimator.NO_ANIMATOR) {
                     view.setAlpha(0);
                 }
@@ -343,7 +343,7 @@ class HintCaseView extends RelativeLayout {
     @NonNull
     private RelativeLayout getExtraContentHolderRelativeLayout() {
         LayoutParams relativeLayoutParams =
-                new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                new LayoutParams(parent.getWidth(), parent.getHeight());
         RelativeLayout relativeLayout = new RelativeLayout(getContext());
         relativeLayoutParams.topMargin = DimenUtils.getStatusBarHeight(getContext());
         relativeLayoutParams.bottomMargin = navigationBarSizeIfExistAtTheBottom.y;

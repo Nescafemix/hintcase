@@ -19,28 +19,30 @@ public class SlideInFromRightContentHolderAnimator extends ContentHolderAnimator
 
     @Override
     public ValueAnimator getAnimator(final View view, final OnFinishListener onFinishListener) {
-        view.setAlpha(1);
         float spaceUntilRightSide = view.getRootView().getWidth() - view.getLeft();
         ObjectAnimator animator = ObjectAnimator.ofFloat(view, View.TRANSLATION_X,
                 spaceUntilRightSide, 0);
         animator.setDuration(durationInMilliseconds);
-        if (onFinishListener != NO_CALLBACK) {
-            animator.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animation) { }
+        animator.setStartDelay(startDelayInMilliseconds);
+        animator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                view.setAlpha(1);
+            }
 
-                @Override
-                public void onAnimationEnd(Animator animation) {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (onFinishListener != NO_CALLBACK) {
                     onFinishListener.onFinish();
                 }
+            }
 
-                @Override
-                public void onAnimationCancel(Animator animation) { }
+            @Override
+            public void onAnimationCancel(Animator animation) { }
 
-                @Override
-                public void onAnimationRepeat(Animator animation) { }
-            });
-        }
+            @Override
+            public void onAnimationRepeat(Animator animation) { }
+        });
         return animator;
     }
 }
