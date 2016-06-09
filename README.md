@@ -57,13 +57,15 @@ protected void showHint() {
 
 #### 2.2.- Configuring a Target (OPTIONAL)
 
-You can configure a target view which will be highlighted. You can then configure the shape type and if the target should be clickable or not.
+You can configure a target view which will be highlighted. You can then configure the shape type, a margin between the shape and the target view (named offset) and if the target should be clickable or not.
+
+If no offset is specified, the default offset value is 10dp.
 
 ```java
     .setTarget(findViewById(R.id.textView), new RectangularShape(), HintCase.TARGET_IS_NOT_CLICKABLE)
 ```
 
-By default, if Target is not configured, a rectangular shape is used, the whole parent view is used as target. and it is not clickable.
+By default, if Target is not configured, a rectangular shape is used, the whole parent view is used as target, there is no offset and the target is not clickable.
 
 In HintCaseAssets you can find an extra shape (CircularShape), which is ideal to use with action menu icons, and FAB buttons.
 
@@ -97,12 +99,6 @@ Finally to configure shapeAnimators you need to call:
 
 ```java
     .setShapeAnimators(new RevealRectangularShapeAnimator(), ShapeAnimator.NO_ANIMATOR)
-```
-
-As an optional parameter, you can specify an offset dimension resource Id as a margin between the shape and the target view. If no offset is specified, the default offset value is 10dp.
-
-```java
-    .setShapeAnimators(R.dimen.margin, new RevealRectangularShapeAnimator(), ShapeAnimator.NO_ANIMATOR)
 ```
 
 If you don't want an animation you can use ***ShapeAnimator.NO_ANIMATOR***
@@ -364,6 +360,11 @@ Building your own shape animator is really easy. You should extend from ShapeAni
 
 We created this view as a little piece of the [Redbooth](https://redbooth.com/) app for [Android](https://play.google.com/store/apps/details?id=com.redbooth).
 
+## Currently using in
+
+* [Redbooth)(https://play.google.com/store/apps/details?id=com.redbooth)
+
+If you use this library in your project and you want to be in this section, please, let us know it at [@Nescafemix](https://github.com/nescafemix).
 
 ## License
 
