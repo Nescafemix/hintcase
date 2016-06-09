@@ -364,7 +364,7 @@ We created this view as a little piece of the [Redbooth](https://redbooth.com/) 
 
 * [Redbooth](https://play.google.com/store/apps/details?id=com.redbooth)
 
-If you use this library in your project and you want to be in this section, please, let us know it at [@Nescafemix](https://github.com/nescafemix).
+If you use this library in your project and you want to be in this section, please, let us know it at [@Nescafemix](https://twitter.com/Nescafemix).
 
 ## License
 
