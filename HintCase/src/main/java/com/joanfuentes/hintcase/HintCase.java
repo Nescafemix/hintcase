@@ -2,12 +2,14 @@ package com.joanfuentes.hintcase;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.DimenRes;
 import android.view.View;
 
 import com.joanfuentes.hintcase.utils.DimenUtils;
 
 public class HintCase {
     public static final int DEFAULT_SHAPE_OFFSET_IN_DP = 10;
+    public static final int NO_OFFSET_IN_PX = 0;
     public static final int BACKGROUND_COLOR_TRANSPARENT = 0x00000000;
     public static final int HINT_BLOCK_POSITION_LEFT = 0;
     public static final int HINT_BLOCK_POSITION_TOP = 1;
@@ -36,7 +38,8 @@ public class HintCase {
     public HintCase(View view) {
         this.context = view.getContext();
         this.hintCaseView = new HintCaseView(context, this);
-        this.hintCaseView.setTargetInfo(null, new RectangularShape(), TARGET_IS_NOT_CLICKABLE);
+        this.hintCaseView.setTargetInfo(null, new RectangularShape(), NO_OFFSET_IN_PX,
+                TARGET_IS_NOT_CLICKABLE);
         this.hintCaseView.setParentView(view);
     }
 
@@ -45,20 +48,49 @@ public class HintCase {
     }
 
     public HintCase setTarget(View target) {
-        return setTarget(target, new RectangularShape(), TARGET_IS_CLICKABLE);
+        int offsetInPx = DimenUtils.dipToPixels(context, HintCase.DEFAULT_SHAPE_OFFSET_IN_DP);
+        return setCompleteTarget(target, new RectangularShape(), offsetInPx, TARGET_IS_CLICKABLE);
+    }
+
+    public HintCase setTarget(View target,  @DimenRes int offsetResId) {
+        int offsetInPx = context.getResources().getDimensionPixelSize(offsetResId);
+        return setCompleteTarget(target, new RectangularShape(), offsetInPx, TARGET_IS_CLICKABLE);
     }
 
     public HintCase setTarget(View target, boolean isTargetClickable) {
-        return setTarget(target, new RectangularShape(), isTargetClickable);
+        int offsetInPx = DimenUtils.dipToPixels(context, HintCase.DEFAULT_SHAPE_OFFSET_IN_DP);
+        return setCompleteTarget(target, new RectangularShape(), offsetInPx, isTargetClickable);
+    }
+
+    public HintCase setTarget(View target, boolean isTargetClickable, @DimenRes int offsetResId) {
+        int offsetInPx = context.getResources().getDimensionPixelSize(offsetResId);
+        return setCompleteTarget(target, new RectangularShape(), offsetInPx, isTargetClickable);
     }
 
     public HintCase setTarget(View target, Shape shape) {
-        this.hintCaseView.setTargetInfo(target, shape, TARGET_IS_CLICKABLE);
-        return this;
+        int offsetInPx = DimenUtils.dipToPixels(context, HintCase.DEFAULT_SHAPE_OFFSET_IN_DP);
+        return setCompleteTarget(target, shape, offsetInPx, TARGET_IS_CLICKABLE);
+    }
+
+    public HintCase setTarget(View target, Shape shape, @DimenRes int offsetResId) {
+        int offsetInPx = context.getResources().getDimensionPixelSize(offsetResId);
+        return setCompleteTarget(target, shape, offsetInPx, TARGET_IS_CLICKABLE);
     }
 
     public HintCase setTarget(View target, Shape shape, boolean isTargetClickable) {
-        this.hintCaseView.setTargetInfo(target, shape, isTargetClickable);
+        int offsetInPx = DimenUtils.dipToPixels(context, HintCase.DEFAULT_SHAPE_OFFSET_IN_DP);
+        return setCompleteTarget(target, shape, offsetInPx, isTargetClickable);
+    }
+
+    public HintCase setTarget(View target, Shape shape, boolean isTargetClickable,
+                              @DimenRes int offsetResId) {
+        int offsetInPx = context.getResources().getDimensionPixelSize(offsetResId);
+        return setCompleteTarget(target, shape, offsetInPx, isTargetClickable);
+    }
+
+    private HintCase setCompleteTarget(View target, Shape shape, int offsetInPx,
+                                       boolean isTargetClickable) {
+        this.hintCaseView.setTargetInfo(target, shape, offsetInPx, isTargetClickable);
         return this;
     }
 
@@ -78,15 +110,7 @@ public class HintCase {
 
     public HintCase setShapeAnimators(ShapeAnimator showShapeAnimator,
                                       ShapeAnimator hideShapeAnimator) {
-        int offsetInPx = DimenUtils.dipToPixels(context, HintCase.DEFAULT_SHAPE_OFFSET_IN_DP);
-        this.hintCaseView.setShape(offsetInPx, showShapeAnimator, hideShapeAnimator);
-        return this;
-    }
-
-    public HintCase setShapeAnimators(int offsetResId, ShapeAnimator showShapeAnimator,
-                                      ShapeAnimator hideShapeAnimator) {
-        int offsetInPx = context.getResources().getDimensionPixelSize(offsetResId);
-        this.hintCaseView.setShape(offsetInPx, showShapeAnimator, hideShapeAnimator);
+        this.hintCaseView.setShape(showShapeAnimator, hideShapeAnimator);
         return this;
     }
 

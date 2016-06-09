@@ -37,7 +37,7 @@ class HintCaseView extends RelativeLayout {
     private ViewGroup parent;
     private int parentIndex;
     private int backgroundColor;
-    private int offset;
+    private int offsetInPx;
     private int hintBlockPosition;
     private HintCase.OnClosedListener onClosedListener;
     private ShapeAnimator showShapeAnimator;
@@ -75,7 +75,7 @@ class HintCaseView extends RelativeLayout {
         extraBlocks = new ArrayList<>();
         extraBlockViews = new ArrayList<>();
         backgroundColor = DEFAULT_BACKGROUND_COLOR;
-        offset = DimenUtils.dipToPixels(getContext(), HintCase.DEFAULT_SHAPE_OFFSET_IN_DP);
+        offsetInPx = HintCase.NO_OFFSET_IN_PX;
         hintBlockPosition = DEFAULT_HINT_BLOCK_POSITION;
         basePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         navigationBarSizeIfExistAtTheBottom = DimenUtils.getNavigationBarSizeIfExistAtTheBottom(getContext());
@@ -374,9 +374,10 @@ class HintCaseView extends RelativeLayout {
         this.onClosedListener = onClickListener;
     }
 
-    public void setTargetInfo(View view, Shape shape, boolean isTargetClickable) {
+    public void setTargetInfo(View view, Shape shape, int offsetInPx, boolean isTargetClickable) {
         this.targetView = view;
         this.shape = shape;
+        this.offsetInPx = offsetInPx;
         this.isTargetClickable = isTargetClickable;
     }
 
@@ -400,7 +401,7 @@ class HintCaseView extends RelativeLayout {
     }
 
     public void initializeView() {
-        shape.setShapeInfo(targetView, parent, offset, getContext());
+        shape.setShapeInfo(targetView, parent, offsetInPx, getContext());
         calculateHintBlockPosition(parent, shape);
         setViews();
         buildBaseBitmap();
@@ -410,9 +411,8 @@ class HintCaseView extends RelativeLayout {
         return shape;
     }
 
-    public void setShape(int offset, ShapeAnimator showShapeAnimator,
+    public void setShape(ShapeAnimator showShapeAnimator,
                          ShapeAnimator hideShapeAnimator) {
-        this.offset = offset;
         this.showShapeAnimator = showShapeAnimator;
         this.hideShapeAnimator = hideShapeAnimator;
     }

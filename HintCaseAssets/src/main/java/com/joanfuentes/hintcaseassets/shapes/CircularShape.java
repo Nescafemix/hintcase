@@ -50,8 +50,8 @@ public class CircularShape extends Shape {
             setRight((int) (getCenterX() + minRadius));
             setTop((int) (getCenterY()  - minRadius));
             setBottom((int) (getCenterY() + minRadius));
-            setWidth(getRight() - getLeft());
-            setHeight(getBottom() - getTop());
+            setWidth(minRadius * 2);
+            setHeight(minRadius * 2);
         } else {
             if (parent != null) {
                 minRadius = 0;
