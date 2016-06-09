@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
+import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
@@ -71,10 +72,16 @@ public class DimenUtils {
     }
 
     public static Point getRealScreenSize(Context context) {
-        View decorView = ((Activity)context).getWindow().getDecorView();
         Point size = new Point();
-        size.x = decorView.getWidth();
-        size.y = decorView.getHeight();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+            Display display = windowManager.getDefaultDisplay();
+            display.getRealSize(size);
+        } else {
+            View decorView = ((Activity)context).getWindow().getDecorView();
+            size.x = decorView.getWidth();
+            size.y = decorView.getHeight();
+        }
         return size;
     }
 }
