@@ -34,20 +34,20 @@ public class RectangularShape extends Shape {
     @Override
     public void setShapeInfo(View targetView, ViewGroup parent, int offset, Context context) {
         if (targetView != null) {
-            minHeight = targetView.getMeasuredHeight() + offset;
-            minWidth = targetView.getMeasuredWidth() + offset;
+            minHeight = targetView.getMeasuredHeight() + (offset * 2);
+            minWidth = targetView.getMeasuredWidth() + (offset * 2);
             maxHeight = parent.getHeight() * 2;
             maxWidth = parent.getWidth() * 2;
             int[] targetViewLocationInWindow = new int[2];
             targetView.getLocationInWindow(targetViewLocationInWindow);
             setCenterX(targetViewLocationInWindow[0] + targetView.getWidth() / 2);
             setCenterY(targetViewLocationInWindow[1] + targetView.getHeight() / 2);
-            setLeft(targetViewLocationInWindow[0]);
-            setRight(targetViewLocationInWindow[0] + ((int) getCenterX() - getLeft()) * 2);
-            setTop(targetViewLocationInWindow[1]);
-            setBottom(targetViewLocationInWindow[1] + ((int) getCenterY() - getTop()) * 2);
-            setWidth(getRight() - getLeft());
-            setHeight(getBottom() - getTop());
+            setLeft(targetViewLocationInWindow[0] - offset);
+            setRight(targetViewLocationInWindow[0] + (int)minWidth - offset);
+            setTop(targetViewLocationInWindow[1] - offset);
+            setBottom(targetViewLocationInWindow[1] + (int)minHeight - offset);
+            setWidth(minWidth);
+            setHeight(minHeight);
         } else {
             if (parent != null) {
                 minHeight = 0;

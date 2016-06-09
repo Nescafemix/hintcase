@@ -122,7 +122,7 @@ public class CustomHintActivity extends AppCompatActivity {
                 .setContentStyle(R.style.content_dark)
                 .build();
         new HintCase(getActivity().getWindow().getDecorView())
-                .setTarget(view)
+                .setTarget(view, R.dimen.zero_margin)
                 .setBackgroundColor(0x00000000)
                 .setHintBlock(blockInfo, new FadeInContentHolderAnimator(),
                         new FadeOutContentHolderAnimator())

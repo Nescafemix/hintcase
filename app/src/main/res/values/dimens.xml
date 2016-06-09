@@ -10,4 +10,5 @@
     <dimen name="shadow">7dp</dimen>
     <dimen name="corner_radius">10dp</dimen>
     <dimen name="small_margin">8dp</dimen>
+    <dimen name="zero_margin">0dp</dimen>
 </resources>
