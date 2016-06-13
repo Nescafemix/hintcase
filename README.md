@@ -9,7 +9,7 @@ With HintCase library you can apply shape animations to highlight a specific vie
 
 ## Latest Version
 
-[![Download](https://api.bintray.com/packages/joanfuentes/maven/HintCase/images/download.svg) ](https://bintray.com/joanfuentes/maven/HintCase/_latestVersion) ![](https://img.shields.io/badge/platform-android-green.svg) ![](https://img.shields.io/badge/Min%20SDK-14-green.svg) ![](https://img.shields.io/badge/Licence-Apache%20v2-green.svg)
+[![Download](https://api.bintray.com/packages/joanfuentes/maven/HintCase/images/download.svg) ](https://bintray.com/joanfuentes/maven/HintCase/_latestVersion) ![](https://img.shields.io/badge/platform-android-green.svg) ![](https://img.shields.io/badge/Min%20SDK-14-green.svg) ![](https://img.shields.io/badge/Licence-Apache%20v2-green.svg) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-HintCase-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3707)
 
 
 ## How to use
