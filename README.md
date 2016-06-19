@@ -21,7 +21,7 @@ Add the library dependency to your build.gradle file.
 ```groovy
 dependencies {
     ...
-    compile 'com.joanfuentes:HintCase:1.0.2’
+    compile 'com.joanfuentes:HintCase:1.0.2'
 }
 ```
 
@@ -32,7 +32,7 @@ You can add the optional assets library dependency to your build.gradle file.
 ```groovy
 dependencies {
     ...
-    compile 'com.joanfuentes:HintCaseAssets:1.0.2’
+    compile 'com.joanfuentes:HintCaseAssets:1.0.2'
 }
 ```
 
