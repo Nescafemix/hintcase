@@ -31,21 +31,21 @@ allprojects {
 ext {
     //Android
     androidApplicationId = "com.joanfuentes"
-    androidBuildToolsVersion = "23.0.3"
+    androidBuildToolsVersion = "24.0.2"
     androidMinSdkVersion = 14
-    androidTargetSdkVersion = 23
-    androidCompileSdkVersion = 23
-    androidVersionCodeExample = 3
-    androidVersionNameExample = "1.0.2"
-    androidVersionCodeMainLibrary = 3
-    androidVersionNameMainLibrary = "1.0.2"
-    androidVersionCodeAssetsLibrary = 3
-    androidVersionNameAssetsLibrary = "1.0.2"
+    androidTargetSdkVersion = 24
+    androidCompileSdkVersion = 24
+    androidVersionCodeExample = 4
+    androidVersionNameExample = "1.0.3"
+    androidVersionCodeMainLibrary = 4
+    androidVersionNameMainLibrary = "1.0.3"
+    androidVersionCodeAssetsLibrary = 4
+    androidVersionNameAssetsLibrary = "1.0.3"
 
     //Libraries Versions
-    androidSupportVersion = "23.4.0"
+    androidSupportVersion = "24.2.1"
     butterKnifeVersion = "7.0.1"
-    glideVersion = "3.6.1"
+    glideVersion = "3.7.0"
 
     //JCenter
     jcenterUserOrganization = "joanfuentes"
