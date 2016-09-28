@@ -471,7 +471,6 @@ class HintCaseView extends RelativeLayout {
                 }
                 break;
         }
-
         return consumeTouchEvent;
     }
 
