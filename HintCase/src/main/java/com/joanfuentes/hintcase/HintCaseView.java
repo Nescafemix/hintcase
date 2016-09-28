@@ -53,6 +53,7 @@ class HintCaseView extends RelativeLayout {
     private boolean isTargetClickable;
     private Point navigationBarSizeIfExistAtTheBottom;
     private Point navigationBarSizeIfExistOnTheRight;
+    private boolean wasPressedOnShape;
 
     public View getHintBlockView() {
         return hintBlockView;
@@ -451,13 +452,24 @@ class HintCaseView extends RelativeLayout {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         boolean consumeTouchEvent = true;
-        if (closeOnTouch) {
-            if (MotionEvent.ACTION_UP == event.getAction()) {
-                performHide();
-            }
-        }
-        if (targetView != null && isTargetClickable && shape.isTouchEventInsideTheHint(event)) {
-            targetView.dispatchTouchEvent(event);
+        switch(event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                wasPressedOnShape = shape.isTouchEventInsideTheHint(event);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                if(!shape.isTouchEventInsideTheHint(event))
+                    wasPressedOnShape = false;
+                break;
+            case MotionEvent.ACTION_UP:
+                if (closeOnTouch) {
+                    performHide();
+                }
+                if(targetView != null
+                        && isTargetClickable
+                        && wasPressedOnShape && shape.isTouchEventInsideTheHint(event)){
+                    targetView.performClick();
+                }
+                break;
         }
         return consumeTouchEvent;
     }
