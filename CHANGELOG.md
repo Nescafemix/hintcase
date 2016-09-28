@@ -1,5 +1,8 @@
 #Changelog
 
+#1.0.3 (28/09/2016)
+- Fixed a bug passing the click event to the target view.
+
 #1.0.2 (09/06/2016)
 - Refactored the way the offset is configured (now is done from setTarget(...) instead of setShapeAnimators(...)))
 - Fixed a Crash with Andoid N Beta.
