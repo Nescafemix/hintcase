@@ -1,5 +1,8 @@
 #Changelog
 
+#1.0.4 (10/11/2016)
+- Fixed a crash using the library from a Fragment.
+
 #1.0.3 (28/09/2016)
 - Fixed a bug passing the click event to the target view.
 
