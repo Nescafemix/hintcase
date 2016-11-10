@@ -7,6 +7,7 @@ import android.graphics.Point;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -78,9 +79,19 @@ public class DimenUtils {
             Display display = windowManager.getDefaultDisplay();
             display.getRealSize(size);
         } else {
-            View decorView = ((Activity)context).getWindow().getDecorView();
-            size.x = decorView.getWidth();
-            size.y = decorView.getHeight();
+            View decorView = null;
+            if(context instanceof Activity) {
+                decorView = ((Activity) context).getWindow().getDecorView();
+            } else if(context instanceof ContextThemeWrapper) {
+                Context baseContext = ((ContextThemeWrapper) context).getBaseContext();
+                if(baseContext instanceof Activity) {
+                    decorView = ((Activity) baseContext).getWindow().getDecorView();
+                }
+            }
+            if(decorView != null) {
+                size.x = decorView.getWidth();
+                size.y = decorView.getHeight();
+            }
         }
         return size;
     }
