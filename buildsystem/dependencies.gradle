@@ -35,12 +35,12 @@ ext {
     androidMinSdkVersion = 14
     androidTargetSdkVersion = 24
     androidCompileSdkVersion = 24
-    androidVersionCodeExample = 4
-    androidVersionNameExample = "1.0.3"
-    androidVersionCodeMainLibrary = 4
-    androidVersionNameMainLibrary = "1.0.3"
-    androidVersionCodeAssetsLibrary = 4
-    androidVersionNameAssetsLibrary = "1.0.3"
+    androidVersionCodeExample = 5
+    androidVersionNameExample = "1.0.4"
+    androidVersionCodeMainLibrary = 5
+    androidVersionNameMainLibrary = "1.0.4"
+    androidVersionCodeAssetsLibrary = 5
+    androidVersionNameAssetsLibrary = "1.0.4"
 
     //Libraries Versions
     androidSupportVersion = "24.2.1"
